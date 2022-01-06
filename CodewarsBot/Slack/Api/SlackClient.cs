@@ -19,7 +19,7 @@ namespace CodewarsBot.Slack.Api
 
         public bool PostLeaderboardToSlack(string leaderboard)
         {
-            const string endpoint = "/T02T116NZTM/B02TQNED7U0/8kvEzRyUjtXQSP6No9CeRUAV";
+            const string endpoint = "[INSERT WEBHOOK PATH HERE]";
             RestRequest request = new RestRequest(endpoint, Method.POST);
 
             request.AddHeader("Content-Type", "application/json");
