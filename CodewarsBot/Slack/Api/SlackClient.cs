@@ -10,17 +10,18 @@ namespace CodewarsBot.Slack.Api
     public class SlackClient : ISlackClient
     {
         private readonly IRestClient _client;
+        private readonly string _webhookDetailsUrl;
 
         public SlackClient()
         {
-            var webhook = ConfigurationManager.AppSettings["SlackWebHook"];
-            _client = new RestClient(webhook);
+            var webhookBaseUrl = ConfigurationManager.AppSettings["SlackWebHookBaseUrl"];
+            _webhookDetailsUrl = ConfigurationManager.AppSettings["SlackWebHookDetailsUrl"];
+            _client = new RestClient(webhookBaseUrl);
         }
 
         public bool PostLeaderboardToSlack(string leaderboard)
         {
-            const string endpoint = "[INSERT WEBHOOK PATH HERE]";
-            RestRequest request = new RestRequest(endpoint, Method.POST);
+            RestRequest request = new RestRequest(_webhookDetailsUrl, Method.POST);
 
             request.AddHeader("Content-Type", "application/json");
 
